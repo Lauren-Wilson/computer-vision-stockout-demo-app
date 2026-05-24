@@ -221,6 +221,9 @@ __marimo__/
 # Model weights (large binary — obtain separately)
 models/*.weights
 
+# ignore models directory
+models/
+
 # Inference outputs (generated at runtime)
 outputs/*
 !outputs/.gitkeep
