@@ -216,3 +216,14 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ── Project-specific ──────────────────────────────────────────────────────────
+# Model weights (large binary — obtain separately)
+models/*.weights
+
+# Inference outputs (generated at runtime)
+outputs/*
+!outputs/.gitkeep
+
+# any .cfg files (configurations, not source code)
+*.cfg
