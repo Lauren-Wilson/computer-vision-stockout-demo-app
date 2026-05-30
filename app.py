@@ -160,7 +160,15 @@ def bgr_to_rgb(bgr: np.ndarray) -> np.ndarray:
 def load_sample_image(filename: str) -> np.ndarray:
     path = os.path.join(SAMPLE_DIR, filename)
     if not os.path.exists(path):
-        raise FileNotFoundError(f"Sample image not found: {path}")
+        try:
+            requested = os.path.basename(filename).lower()
+            matched = next(
+                name for name in os.listdir(SAMPLE_DIR)
+                if name.lower() == requested
+            )
+            path = os.path.join(SAMPLE_DIR, matched)
+        except (FileNotFoundError, StopIteration):
+            raise FileNotFoundError(f"Sample image not found: {path}")
     img = cv2.imread(path)
     if img is None:
         raise ValueError(f"OpenCV could not decode image: {path}")
