@@ -28,6 +28,26 @@ BOX_COLOR   = (0, 0, 220)   # BGR red-ish
 LABEL_COLOR = (255, 255, 255)
 NMS_THRESHOLD = 0.40
 
+# ── Download Model Files ──────────────────────────────────────────────────────────────
+import os
+import gdown
+
+
+os.makedirs(MODELS_DIR, exist_ok=True)
+
+FILES = {
+    "yolov4-custom.cfg": "1__ZcAVCAg7Wxv57gkQ_IjTkXDhvyJdwD",
+    "yolov4-custom_last.weights": "1VeOYC7HDj4mhw2vap6yKgBuQxV-IcLz6",
+    "obj.names": "1WJylgWOkEIWe1zRFs96WRM0ZIdVodvcs" 
+}
+
+for filename, file_id in FILES.items():
+    output_path = os.path.join(MODELS_DIR, filename)
+
+    if not os.path.exists(output_path):
+        url = f"https://drive.google.com/uc?id={file_id}"
+        gdown.download(url, output_path, quiet=False)
+
 
 # ── Model loading ──────────────────────────────────────────────────────────────
 @st.cache_resource(show_spinner="Loading YOLOv4 model…")
@@ -108,8 +128,8 @@ def run_inference(image_bgr: np.ndarray,
 
             # Draw label badge
             text = f"{label}  {conf:.0%}"
-            font_scale = 1.0
-            font_thickness = 2
+            font_scale = 2.0
+            font_thickness = 3
             text_pad_x = 8
             text_pad_y = 6
             (tw, th), baseline = cv2.getTextSize(
