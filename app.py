@@ -17,7 +17,7 @@ WEIGHTS_PATH = os.path.join(MODELS_DIR, "yolov4-custom_last.weights")
 NAMES_PATH   = os.path.join(MODELS_DIR, "obj.names")
 
 SAMPLE_IMAGES = {
-    "Dressing Shelf":      "dressing_shelf.jpg",
+    "Dressing Shelf":      "dressing_shelf.JPG",
     "Cereal Shelf":        "cereal_shelf.jpg",
     "Personal Care Shelf": "personal_care_shelf.jpg",
     "Soda Shelf":          "soda_shelf.jpg",
